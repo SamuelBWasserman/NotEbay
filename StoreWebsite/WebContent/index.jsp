@@ -14,12 +14,12 @@
 									  
 		<br>
 
-		<form method="post" action="show.jsp">
-  			Username: <input type="text" name="uname"><br>
-  			Password: <input type="text" name="pword"><br>
-  			<button type="submit" name="command" value="Log In"/>Log In</button>
+		<form action="login.jsp">
+  			<button type="submit" value="Log In">Log In</button>
   			<br>
-  			<button type="submit" name="command" value="Sign Up"/>Sign Up</button>
+  		</form>
+  		<form action="signUp.jsp">
+  			<button type="submit" value="Sign Up" >Sign Up</button>
   			<br>
 		</form>
 		<br>

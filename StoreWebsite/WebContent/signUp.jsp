@@ -11,6 +11,15 @@
 <title>Login Page</title>
 </head>
 <body>
+	<form action = "signUp.jsp">
+		Username: <input type="text" name="username"><br>
+		Email: <input type="text" name="email"><br>
+  		Password: <input type="text" name="password"><br>
+  		Confirm Password: <input type="text" name="passwordConfirmation"><br>
+		<br>
+  		<button type="submit" name="command" value="Sign Up"/>Sign Up</button>
+  		<br>
+	</form>
 	<%
 		try {
 			ApplicationDB db =  new ApplicationDB();
@@ -22,21 +31,12 @@
 			//Get the selected 
 			String entity = request.getParameter("command");
 			
-			if(entity.equals("Log In")){
-				// Retrieve data about End User
-				String username = request.getParameter("uname");
-				String query = "SELECT * FROM User U WHERE username = \"" + username + "\"";
-				//Run the query against the database.
-				ResultSet result = stmt.executeQuery(query);
-				if(result.next() != false){
-					out.print("Hello " + username + ", you have been logged in.");
-				} else{
-					out.print("Invalid credentials.");
-				}
-			} else{ // This denotes the user chose Sign Up instead.
+			if(entity.equals("Sign Up")){ // This denotes the user chose Sign Up instead.
 				// Insert the users username and password into the database
-				String username = request.getParameter("uname");
-				String password = request.getParameter("pword");
+				String username = request.getParameter("username");
+				String email = request.getParameter("email");
+				String password = request.getParameter("password");
+				String passwordConfirmation = request.getParameter("passwordConfirmation");
 				String query = "INSERT INTO User VALUES(\"" + username + "\",\"" + password + "\",\" End User\")";
 				//Run the query against the database.
 				int rowsUpdated = stmt.executeUpdate(query);
@@ -50,7 +50,6 @@
 			db.closeConnection(con);
 			
 		} catch (Exception e) {
-			out.print(e);
 		}
 	%>
 
