@@ -37,6 +37,7 @@
 				//Run the query against the database.
 				ResultSet result = stmt.executeQuery(query);
 				if(result.next() != false){
+					response.sendRedirect("http://localhost:8080/StoreWebsite/userDashboard.jsp");
 					out.print("Hello " + username + ", you have been logged in.");
 				} else{
 					out.print("A user with those credentials does not exist.");
