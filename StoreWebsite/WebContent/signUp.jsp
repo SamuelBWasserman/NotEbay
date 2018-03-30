@@ -22,22 +22,25 @@
 	</form>
 	<%
 		try {
+			//Get the selected command
+			String entity = request.getParameter("command");
 			ApplicationDB db =  new ApplicationDB();
 			Connection con = db.getConnection();
 		
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
 			
-			//Get the selected 
-			String entity = request.getParameter("command");
 			
-			if(entity.equals("Sign Up")){ // This denotes the user chose Sign Up instead.
-				// Insert the users username and password into the database
-				String username = request.getParameter("username");
-				String email = request.getParameter("email");
-				String password = request.getParameter("password");
-				String passwordConfirmation = request.getParameter("passwordConfirmation");
-				String query = "INSERT INTO User VALUES(\"" + username + "\",\"" + password + "\",\" End User\")";
+			// Insert the users username and password into the database
+			String username = request.getParameter("username");
+			String email = request.getParameter("email");
+			String password = request.getParameter("password");
+			String passwordConfirmation = request.getParameter("passwordConfirmation");
+			// Check that the passwords match.
+			if(!password.equals(passwordConfirmation)){
+				out.print("Passwords do not match.");
+			} else{
+				String query = "INSERT INTO User VALUES(\"" + username + "\",\"" + password + "\",\"End User\",\"" + email + "\")";
 				//Run the query against the database.
 				int rowsUpdated = stmt.executeUpdate(query);
 				if(rowsUpdated == 1){
@@ -47,9 +50,9 @@
 				}
 			}
 			//close the connection.
-			db.closeConnection(con);
-			
+			db.closeConnection(con);	
 		} catch (Exception e) {
+			//out.print(e);
 		}
 	%>
 

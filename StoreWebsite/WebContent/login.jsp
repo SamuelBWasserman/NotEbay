@@ -39,7 +39,7 @@
 				if(result.next() != false){
 					out.print("Hello " + username + ", you have been logged in.");
 				} else{
-					out.print("Invalid credentials.");
+					out.print("A user with those credentials does not exist.");
 				}
 			}
 			//close the connection.
