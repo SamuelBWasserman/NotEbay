@@ -17,7 +17,7 @@
   		Password: <input type="text" name="password"><br>
   		Confirm Password: <input type="text" name="passwordConfirmation"><br>
 		<br>
-  		<button type="submit" name="command" value="Sign Up"/>Sign Up</button>
+  		<button type="submit" name="command" value="Sign Up">Sign Up</button>
   		<br>
 	</form>
 	<%

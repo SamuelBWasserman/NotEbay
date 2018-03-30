@@ -12,16 +12,16 @@
 	<body>
 		<h1>Dashboard</h1>
 		<form action = "myAccount.jsp">
-			<button type="submit" name="account" value="My Account"/>My Account</button>
+			<button type="submit" name="account" value="My Account">My Account</button>
 		</form>
 		<form action = "listAnItem.jsp">
-		<button type="submit" name="listItem" value="List an Item"/>List an Item</button>
+			<button type="submit" name="listItem" value="List an Item">List an Item</button>
 		</form>
 		<form action = "searchListings.jsp">
-		<button type="submit" name="SearchList" value="Search Listings"/>Search Listings</button>
+			<button type="submit" name="SearchList" value="Search Listings">Search Listings</button>
 		</form>
 		<form action = "helpPage.jsp">
-		<button type="submit" name="help" value="Help"/>Help</button>		
+			<button type="submit" name="help" value="Help">Help</button>		
 		</form>
 							  
 		<%

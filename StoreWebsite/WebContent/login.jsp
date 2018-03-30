@@ -15,7 +15,7 @@
 		Username: <input type="text" name="username"><br>
   		Password: <input type="text" name="password"><br>
 		<br>
-  		<button type="submit" name="command" value="Log In"/>Log In</button>
+  		<button type="submit" name="command" value="Log In">Log In</button>
   		<br>
 	</form>
 	<%
@@ -37,8 +37,11 @@
 				//Run the query against the database.
 				ResultSet result = stmt.executeQuery(query);
 				if(result.next() != false){
+					// Set a cookie saving the username for one hour and send them to the dashboard
+					Cookie cookie = new Cookie("username",username);
+					cookie.setMaxAge(60*60*1);
+					response.addCookie(cookie);
 					response.sendRedirect("http://localhost:8080/StoreWebsite/userDashboard.jsp");
-					out.print("Hello " + username + ", you have been logged in.");
 				} else{
 					out.print("A user with those credentials does not exist.");
 				}
