@@ -11,40 +11,11 @@ pageEncoding="ISO-8859-1" import="com.StoreWebsite.pkg.*"%>
 	</head>
 	<body>
 		<h1>My Account</h1>
-		<form action = "myAccount.jsp">
+		<form action = "deleteAccount.jsp">
 			<button type="submit" name="deleteAccount" value="Delete Account">Delete Account</button>
 		</form>
 		<form action = "watchList.jsp">
 			<button type="submit" name="watchList" value="Watch List">Watch List</button>
 		</form>					  
-		<%
-		// Open database connection
-		ApplicationDB db =  new ApplicationDB();
-		Connection con = db.getConnection();
-		
-		//Create a SQL statement
-		Statement stmt = con.createStatement();
-		
-		// Retrieve the username from the cookie
-		Cookie cookie = null;
-        Cookie[] cookies = null;
-        
-        cookies = request.getCookies();
-        
-        if( cookies != null ) {
-           for (int i = 0; i < cookies.length; i++) {
-	        	   if(cookies[i].getName().equals("username")){
-	        		   cookie = cookies[i];
-	        	   }
-           }
-        }
-        
-        // Execute delete query. Bye Bye user.
-		
-		
-		
-		
-		%>
-		
 	</body>
 </html>
