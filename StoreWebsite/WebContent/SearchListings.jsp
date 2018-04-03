@@ -15,9 +15,7 @@
 			Search: <input type="text" name="search"><br>
 		<br>
 			<button type="button" name="listing" value="Search Listings">Search Listings</button>
-
-
-			
+		<br>
 		</form>				  
 
 <%
@@ -31,47 +29,39 @@
 			
 			//Get the selected 
 			String entity = request.getParameter("listing");
-			out.print("testing");
+			
 			int temp1 = 0;
 			String temp2  = "name";
 			//String insert = "INSERT INTO Item VALUES(\"00/00/0000\",\"0001\",\"10\",\"1\",\"1\",\"Seller\",\"descript\",\"name\")";
-			String insert = "INSERT INTO Item VALUES(\"" + temp2 + "\",\"" + temp2 + "\",\"" + temp1 + "\",\"" + temp1 + "\",\"" + temp1 + "\",\"" + temp1 + "\",\"" + temp2 + "\",\"" + temp2 + "\")";
+			//String insert = "INSERT INTO Item VALUES(\"" + temp2 + "\",\"" + temp2 + "\",\"" + temp1 + "\",\"" + temp1 + "\",\"" + temp1 + "\",\"" + temp1 + "\",\"" + temp2 + "\",\"" + temp2 + "\")";
 			//Run the query against the database.
-			int rowsUpdated = stmt.executeUpdate(insert);
-			if(rowsUpdated == 1){
-				out.print("You have succesfully created an account.");
-			} else{
-				out.print("A user with those credentials already exists.");
-			};
+			//int rowsUpdated = stmt.executeUpdate(insert);
+			//if(rowsUpdated == 1){
+				//out.print("You have succesfully created an account.");
+		//	} else{
+			//	out.print("A user with those credentials already exists.");
+			//};
 			
+		
 			
-			
-			if(entity.equals("Search Listings"))
-			{
 				// Retrieve data about End User
 				String search = request.getParameter("search");
-				
-				String query = "SELECT * FROM Item"; // U WHERE name = \"" + search ;
+				out.print(search);
+				search = "josh";
+				String temp = "computer";
+				String query = "SELECT * FROM Item I WHERE name = \"" + temp + "\";"; //\"" + search ;
+				out.print("TEST");
 				//Run the query against the database.
 				ResultSet result = stmt.executeQuery(query);
-				
-				/*if(result.next() != false){
-					// Set a cookie saving the username for one hour and send them to the dashboard
-					Cookie cookie = new Cookie("username",username);
-					cookie.setMaxAge(60*60*1);
-					response.addCookie(cookie);
-					response.sendRedirect("http://localhost:8080/StoreWebsite/userDashboard.jsp");
-				} else{
-					out.print("A user with those credentials does not exist.");
-				}*/
+				//out.print("testig");
 				
 				int i = 0;
 				
 				List<String> list = new ArrayList<String>();
-				
-				while(result.isLast() == false)
+				result.next();
+				while(result.isAfterLast() == false)
 				{
-					list.add(result.getString(i));
+					list.add(result.getString(8));
 					result.next();
 				//list.add("hello");
 				//list.add("afsd");
@@ -107,12 +97,10 @@
 				//request.setAttribute("list", list);
 				//request.getRequestDispatcher("/WEB-INF/SearchListing.jsp").forward(request, response);
 
-			}
 			//close the connection.
 			db.closeConnection(con);
-			
 		} catch (Exception e) {
-			out.print("error connecting to DB");
+			out.print(e);
 		}
 	%>
 	
