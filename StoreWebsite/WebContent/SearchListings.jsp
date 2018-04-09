@@ -10,10 +10,11 @@
 </head>
 <body>
 	<form action = "processSearchListings.jsp">
+	
 			Search: <input type="text" name="search"><br>
 		<br>
 			<button type="submit" name="command" value="Search">listing</button>
 		<br>
-	</form>				  
+	</form>			  
 </body>
 </html>
