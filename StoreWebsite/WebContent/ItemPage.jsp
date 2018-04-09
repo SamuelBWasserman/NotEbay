@@ -92,12 +92,7 @@ session.setAttribute("iNum", iNum);
 
 %>
 
-	<form action = "processSearchListings.jsp">
-		<br>
-  		<button type="submit" name="back" value="back">back</button>
-  		<br>
-	</form>
-	
+
 	<form action = "processWatchList.jsp">
 		<br>
   		<button type="submit" name="addToWatchList" value="Watch List">Watch List</button>
@@ -106,5 +101,13 @@ session.setAttribute("iNum", iNum);
 	
 <label>$<%=session.getAttribute("BidOutcome").toString()%></label>
 <% session.setAttribute("bidOutcome", "");%>
+
+
+	<form action = "processSearchListings.jsp">
+		<br>
+  		<button type="submit" name="back" value="back">back</button>
+  		<br>
+	</form>
+	
 </body>
 </html>
