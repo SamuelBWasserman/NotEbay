@@ -10,28 +10,20 @@
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
 		
-		// Retrieve the username from the cookie
-		Cookie cookie = null;
-        Cookie[] cookies = null;
-        
-        cookies = request.getCookies();
-        
-        if( cookies != null ) {
-           for (int i = 0; i < cookies.length; i++) {
-	        	   if(cookies[i].getName().equals("username")){
-	        		   cookie = cookies[i];
-	        	   }
-           }
-        }
+		// Retrieve the username from the session
+		// HttpSession sesh = request.getSession();
+		String username = (String)session.getAttribute("username");
         
         // Execute delete query. Bye Bye user.
-		String query = "DELETE FROM User WHERE username = " + cookie.getName();
+		String query = "DELETE FROM User WHERE username = \"" + username + "\"";
+        
 		int rowsUpdated = stmt.executeUpdate(query);
 		if(rowsUpdated == 1){
 			out.print("GoodBye");
 			response.sendRedirect("http://localhost:8080/StoreWebsite/index.jsp");
 		} else{
 		}
+		
 		db.closeConnection(con);
 		
-		%>
+%>
