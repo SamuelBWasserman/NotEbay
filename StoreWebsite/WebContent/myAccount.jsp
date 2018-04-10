@@ -1,3 +1,4 @@
+<!-- This page was written by Sam Wasserman -->
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1" import="com.StoreWebsite.pkg.*"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
@@ -16,6 +17,9 @@ pageEncoding="ISO-8859-1" import="com.StoreWebsite.pkg.*"%>
 		</form>
 		<form action = "watchList.jsp">
 			<button type="submit" name="watchList" value="Watch List">Watch List</button>
-		</form>					  
+		</form>		
+		<form action = "logout.jsp">
+			<button type="submit" name="logout" value="logout">Log Out</button>
+		</form>				  
 	</body>
 </html>
