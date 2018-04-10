@@ -23,17 +23,6 @@
 		<form action = "helpPage.jsp">
 			<button type="submit" name="help" value="Help">Help</button>		
 		</form>
-							  
-		<%
-		
-		
-		
-		
-		
-		
-		
-		
-		%>
 		
 	</body>
 </html>
