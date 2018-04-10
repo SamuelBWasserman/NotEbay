@@ -36,24 +36,59 @@
 				String query = "SELECT * FROM User U WHERE username = \"" + username + "\" AND password = \"" + password + "\"";
 				//Run the query against the database.
 				ResultSet result = stmt.executeQuery(query);
-				session.setAttribute("itemNum", 3);
+			
 				session.setAttribute("username", username);
-				session.setAttribute("emailNum", 2);
 				if(result.next() != false){
 					// Set a cookie saving the username for one hour and send them to the dashboard
 					Cookie cookie = new Cookie("username",username);
 					cookie.setMaxAge(60*60*1);
 					response.addCookie(cookie);
 					
+					
+					
+					
+					String query2 ="SELECT max(itemnum) from Item;" ;
+					ResultSet result2 = stmt.executeQuery(query2);
+					if(result2.next() != false)
+					{
+						int newNum = result2.getInt(1) + 1;
+						session.setAttribute("itemNum", newNum);
+					}
+					else
+					{
+						session.setAttribute("itemNum", 1);
+					}
+					
+					
+					String query3 = "SELECT max(emailNum) from Email;" ;
+					ResultSet result3 = stmt.executeQuery(query3);
+					if(result3.next() != false)
+					{
+						int newENum = result3.getInt(1) + 1;
+						session.setAttribute("emailNum", newENum);
+					}
+					else
+					{
+						session.setAttribute("emailNum", 1);
+					}
+					
+					out.print(session.getAttribute("itemNum").toString());
+					out.print(session.getAttribute("emailNum").toString());
+					
+					
+					
 					response.sendRedirect("http://localhost:8080/StoreWebsite/userDashboard.jsp");
 				} else{
 					out.print("A user with those credentials does not exist.");
 				}
 			}
+			
+			
 			//close the connection.
 			db.closeConnection(con);
 			
 		} catch (Exception e) {
+			//out.print(e);
 		}
 	%>
 

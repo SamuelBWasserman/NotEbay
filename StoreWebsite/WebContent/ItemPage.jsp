@@ -45,7 +45,7 @@ session.setAttribute("iNum", iNum);
 	ResultSet result = stmt.executeQuery(query);
 	if(result.next())
 	{
-		session.setAttribute("bidIncrement", result.getString(5));
+		session.setAttribute("bidIncrement", result.getString(6));
 		session.setAttribute("currentBid",result.getString(4));
 	%>
 <form action = "processItemBid.jsp" >

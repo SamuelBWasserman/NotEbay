@@ -25,7 +25,7 @@
 				{
 					
 				
-				String query = "UPDATE Item Set initPrice = \"" + requestedBid + "\" Where itemnum =  \"" + session.getAttribute("iNum") + "\"";
+				String query = "UPDATE Item Set curPrice = \"" + requestedBid + "\" Where itemnum =  \"" + session.getAttribute("iNum") + "\"";
 				//Run the query against the database.
 				int rowsUpdated = stmt.executeUpdate(query);
 					session.setAttribute("BidOutcome","Bid Successful");

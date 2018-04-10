@@ -20,9 +20,10 @@
 			String bidIncr = request.getParameter("bidincr");
 			// Check that the passwords match.
 			if(itemName.isEmpty()|| description.isEmpty()|| initPrice.isEmpty()|| minSell.isEmpty()||bidIncr.isEmpty()){
-				session.setAttribute("listOutcome","Please Enter All Fields");
-			} else{
-				String query = "INSERT INTO item VALUES(\"" +Calendar.getInstance() + "\",\"" + session.getAttribute("itemNum")+ "\" ,\"" + minSell + "\",\"" + initPrice + "\",\"" + bidIncr + "\",\"" +  session.getAttribute("username") + "\",\"" + description + "\",\"" + itemName + "\")";
+				session.setAttribute("listOutcome","Please Enter All Fields");x
+			} 
+			else{
+				String query = "INSERT INTO item VALUES(\"" +Calendar.getInstance().getTime() + "\",\"" + session.getAttribute("itemNum")+ "\" ,\"" + minSell + "\",\"" + initPrice + "\",\"" + initPrice + "\",\"" + bidIncr + "\",\"" +  session.getAttribute("username") + "\",\"" + description + "\",\"" + itemName + "\")";
 				int temp = Integer.parseInt(session.getAttribute("itemNum").toString());
 				temp++; 
 				session.setAttribute("itemNum", temp);
@@ -38,6 +39,6 @@
 			db.closeConnection(con);	
 			response.sendRedirect("http://localhost:8080/StoreWebsite/userDashboard.jsp");
 		} catch (Exception e) {
-			//out.print(e);
+			out.print(e);
 		}
 	%>
