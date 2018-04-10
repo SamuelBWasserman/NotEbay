@@ -37,12 +37,14 @@
 				//Run the query against the database.
 				ResultSet result = stmt.executeQuery(query);
 				session.setAttribute("itemNum", 3);
+				session.setAttribute("username", username);
+				session.setAttribute("emailNum", 2);
 				if(result.next() != false){
 					// Set a cookie saving the username for one hour and send them to the dashboard
 					Cookie cookie = new Cookie("username",username);
 					cookie.setMaxAge(60*60*1);
 					response.addCookie(cookie);
-					session.setAttribute("username", username);
+					
 					response.sendRedirect("http://localhost:8080/StoreWebsite/userDashboard.jsp");
 				} else{
 					out.print("A user with those credentials does not exist.");

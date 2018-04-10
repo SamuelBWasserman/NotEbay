@@ -5,7 +5,6 @@
 <%
 		try {
 			//Get the selected command
-			String entity = request.getParameter("command");
 			ApplicationDB db =  new ApplicationDB();
 			Connection con = db.getConnection();
 		
