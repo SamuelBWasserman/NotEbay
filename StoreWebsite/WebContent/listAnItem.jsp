@@ -16,7 +16,8 @@
 		Description: <input type="text" name="descrp"><br>
   		Initial Price: <input type="text" name="initprice"><br>
   		Min Sell Price: <input type="text" name="minsell"><br>
-  		Bid Increment: <input type="text" name=" bidincr"><br>
+  		Bid Increment: <input type="text" name="bidincr"><br>
+  		Length(Hours): <input type="text" name="length"><br>
 		<br>
   		<button type="submit" name="command" value="List Item">List Item</button>
   		<br>

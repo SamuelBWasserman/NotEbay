@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="com.StoreWebsite.pkg.*"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
-<%@ page import="javax.servlet.http.*,javax.servlet.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*,java.util.Date,java.text.*"%>
 <%
 		try {
 			//Get the selected command
@@ -18,12 +18,18 @@
 			String initPrice = request.getParameter("initprice");
 			String minSell = request.getParameter("minsell");
 			String bidIncr = request.getParameter("bidincr");
+
+			String length =  request.getParameter("length");
 			// Check that the passwords match.
 			if(itemName.isEmpty()|| description.isEmpty()|| initPrice.isEmpty()|| minSell.isEmpty()||bidIncr.isEmpty()){
-				session.setAttribute("listOutcome","Please Enter All Fields");x
+				session.setAttribute("listOutcome","Please Enter All Fields");
+				response.sendRedirect("http://localhost:8080/StoreWebsite/listAnItem.jsp");
 			} 
 			else{
-				String query = "INSERT INTO item VALUES(\"" +Calendar.getInstance().getTime() + "\",\"" + session.getAttribute("itemNum")+ "\" ,\"" + minSell + "\",\"" + initPrice + "\",\"" + initPrice + "\",\"" + bidIncr + "\",\"" +  session.getAttribute("username") + "\",\"" + description + "\",\"" + itemName + "\")";
+				 SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//dd/MM/yyyy
+				  Date now = new Date();
+				  String strDate = sdfDate.format(now);
+				String query = "INSERT INTO Item VALUES(\"" +strDate + "\",\"" + session.getAttribute("itemNum")+ "\" ,\"" + minSell + "\",\"" + initPrice + "\",\"" + initPrice + "\",\"" + bidIncr + "\",\"" +  session.getAttribute("username") + "\",\"" + description + "\",\"" + length + "\",\"" + itemName + "\")";
 				int temp = Integer.parseInt(session.getAttribute("itemNum").toString());
 				temp++; 
 				session.setAttribute("itemNum", temp);
