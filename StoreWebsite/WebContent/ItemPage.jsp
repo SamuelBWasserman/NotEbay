@@ -57,17 +57,17 @@ session.setAttribute("iNum", iNum);
 
 <br>
 <label> Description:  </label>
-<label><%=result.getString(7)%></label>
+<label><%=result.getString(8)%></label>
 <br>
 
 <br>
 <label> Seller:  </label>
-<label><%=result.getString(6)%></label>
+<label><%=result.getString(7)%></label>
 <br>
 
 <br>
 <label> Bid Increment:  </label>
-<label>$<%=result.getString(5)%></label>
+<label>$<%=result.getString(6)%></label>
 <br>
 
 <br>
