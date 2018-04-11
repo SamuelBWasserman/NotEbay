@@ -15,7 +15,7 @@ pageEncoding="ISO-8859-1" import="com.StoreWebsite.pkg.*"%>
 		<form action = "DeleteAccount.jsp">
 			<button type="submit" name="deleteAccount" value="Delete Account">Delete Account</button>
 		</form>
-		<form action = "watchList.jsp">
+		<form action = "watchlist.jsp">
 			<button type="submit" name="watchList" value="Watch List">Watch List</button>
 		</form>		
 		<form action = "logout.jsp">
