@@ -12,19 +12,8 @@ try {
 
 	//Create a SQL statement
 	Statement stmt = con.createStatement();
-	//Get the selected 
-	//String entity = request.getParameter("listing");
 	int temp1 = 0;
 	String temp2  = "name";
-	//String insert = "INSERT INTO Item VALUES(\"00/00/0000\",\"0001\",\"10\",\"1\",\"1\",\"Seller\",\"descript\",\"name\")";
-	//String insert = "INSERT INTO Item VALUES(\"" + temp2 + "\",\"" + temp2 + "\",\"" + temp1 + "\",\"" + temp1 + "\",\"" + temp1 + "\",\"" + temp1 + "\",\"" + temp2 + "\",\"" + temp2 + "\")";
-	//Run the query against the database.
-	//int rowsUpdated = stmt.executeUpdate(insert);
-	//if(rowsUpdated == 1){
-		//out.print("You have succesfully created an account.");
-//	} else{
-	//	out.print("A user with those credentials already exists.");
-	//};
 		
 		if(session.getAttribute("iSearch") == null)
 		{
@@ -36,47 +25,23 @@ try {
 			session.setAttribute("iSearch", request.getParameter("search"));	
 		}
 
-	// Retrieve data about End User
+		// Retrieve data about End User
 		String search = session.getAttribute("iSearch").toString();
 		out.print(search);
-		String query = "SELECT * FROM Item I WHERE name LIKE \"" + search + "\";"; //\"" + search ;
-		//also need to query to see if description contains search
-		//out.print("TEST");
-		//Run the query against the database.
+		// Check if the name contains the searched name
+		String query = "SELECT * FROM Item I WHERE CONTAINS(name," + search + ")";
+		out.println(query);
 		ResultSet result = stmt.executeQuery(query);
-		//out.print("testig");
-		
-		int i = 0;
 		
 		List<String> listName = new ArrayList<String>();
 		List<String> listNum = new ArrayList<String>();
 		
-		if(result.next())
+	
+		while(result.next())
 		{
-		while(result.isAfterLast() == false)
-		{
-			listName.add(result.getString(8) + " " + result.getString(2));
-			listNum.add(result.getString(2));
-			result.next();
-		//list.add("hello");
-		//list.add("afsd");
+			listName.add(result.getString("name"));
 		}
-		}
-		String query2 = "SELECT * FROM Item I WHERE description LIKE \"" + search + "\";";
-		ResultSet result2 = stmt.executeQuery(query2);
-		if(result2.next())
-		{
-		while(result2.isAfterLast() == false)
-		{
-			if(listNum.contains(result2.getString(2)))
-			{
-				listName.add(result2.getString(8) + " " + result2.getString(2));
-				listNum.add(result2.getString(2));
-			}
-			result2.next();
-			
-		}
-		}
+		
 		%>
  
 		
@@ -89,12 +54,19 @@ try {
 
 		// some how u fill both the arrays from database or hard-coded 
 		//it depends on you
-		for (int z=0; z< listName.size(); z++){
+		for (int z = 0; z< listName.size(); z++){
 		if(listName.get(z) != null)
 		%>
 		<option value="<%=listName.get(z) %>"><%= listName.get(z) %></option>
 		
 		<%
+		String itemNumQuery = "SELECT itemnum FROM Item WHERE name = " + listName.get(z);
+		ResultSet itemNumResult = stmt.executeQuery(query);
+		String itemnum = "";
+		if(itemNumResult.next()){
+			itemnum = itemNumResult.getString("itemnum");
+		}
+		session.setAttribute("itemnum", itemnum);
 		}
 		%>
 
