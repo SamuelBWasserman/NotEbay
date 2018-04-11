@@ -45,34 +45,35 @@ session.setAttribute("iNum", iNum);
 	ResultSet result = stmt.executeQuery(query);
 	if(result.next())
 	{
-		session.setAttribute("bidIncrement", result.getString(6));
-		session.setAttribute("currentBid",result.getString(4));
+		session.setAttribute("itemnum", result.getString("itemnum"));
+		session.setAttribute("bidIncrement", result.getString("BidIncrement"));
+		session.setAttribute("currentBid",result.getString("currentBid"));
 	%>
 <form action = "processItemBid.jsp" >
 
 <br>
 <label> Item Number:  </label>
-<label><%=result.getString(2)%></label>
+<label><%=result.getString("itemnum")%></label>
 <br>
 
 <br>
 <label> Description:  </label>
-<label><%=result.getString(8)%></label>
+<label><%=result.getString("description")%></label>
 <br>
 
 <br>
 <label> Seller:  </label>
-<label><%=result.getString(7)%></label>
+<label><%=result.getString("seller")%></label>
 <br>
 
 <br>
 <label> Bid Increment:  </label>
-<label>$<%=result.getString(6)%></label>
+<label>$<%=result.getString("bidIncrement")%></label>
 <br>
 
 <br>
 <label> Current Price: </label>
-<label>$<%=result.getString(4)%></label>
+<label>$<%=result.getString("currentPrice")%></label>
 <br>
 
 
