@@ -15,8 +15,17 @@ pageEncoding="ISO-8859-1" import="com.StoreWebsite.pkg.*"%>
 		Statement stmt = con.createStatement();
 		
         int counter = 1;
-        String query = "SELECT * FROM transactions WHERE;";
-        ResultSet r = stmt.executeQuery(query);
+
+        // Find total earnings
+        String totalEarningsQuery = "SELECT SUM(amount) AS \"TOTAL_EARNINGS\" FROM Bid WHERE winningBid IS 1;";
+        
+        ResultSet r = stmt.executeQuery(totalEarningsQuery);
+        String totalEarnings = String(r.getString("TOTAL_EARNINGS"));
+    %>
+    <p><b>Total Earnings:</b> <% = totalEarnings%></p>
+    <p><b>Top 5 Selling Items:</b> <% = top5Items%></p>
+    <p><b>Top 10 Sellers:</b> <% = top10Sellers%></p>
+
         ResultSetMetaData metaData = r.getMetaData();
         while(r.next())
         {
