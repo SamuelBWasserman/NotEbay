@@ -36,21 +36,21 @@
 				String query = "SELECT * FROM User U WHERE username = \"" + username + "\" AND password = \"" + password + "\"";
 				//Run the query against the database.
 				ResultSet result = stmt.executeQuery(query);
-			
-				session.setAttribute("username", username);
 				if(result.next() != false){
+					// Begin a session saving the username
+					// HttpSession sesh = request.getSession();
+					session.setAttribute("username", username);
+					session.setAttribute("role", result.getString("role"));
+					
 					response.sendRedirect("http://localhost:8080/StoreWebsite/userDashboard.jsp");
 				} else{
 					out.print("A user with those credentials does not exist.");
 				}
 			}
-			
-			
 			//close the connection.
 			db.closeConnection(con);
 			
 		} catch (Exception e) {
-			//out.print(e);
 		}
 	%>
 
