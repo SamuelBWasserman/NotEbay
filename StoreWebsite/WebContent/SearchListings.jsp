@@ -9,12 +9,28 @@
 <title>Listings</title>
 </head>
 <body>
-	<form action = "processSearchListings.jsp">
+
+
+<form method="get" name="itemSelected" action="">
+		<select name="sectionSelect" id = "sectionSelect" STYLE="width:120px">
+
+		<option value="Graphic Cards">Graphic Cards</option>
+		<option value="RAM">Ram</option>
+		<option value="Cases">Cases</option>
+		
+
+		</select>
+		</form>
+
+<form action = "processSearchListings.jsp">
 	
 			Search: <input type="text" name="search"><br>
 		<br>
 			<button type="submit" name="command" value="Search">listing</button>
 		<br>
-	</form>			  
+	</form>			
+	
+	
+	  
 </body>
 </html>
