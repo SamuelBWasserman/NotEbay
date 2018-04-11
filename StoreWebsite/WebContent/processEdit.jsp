@@ -10,8 +10,9 @@
 </head>
 <body>
 <%
-	// Get the selected command
-	String entity = request.getParameter("command");
+	//Get the selected command
+	String entity = request.getParameter("gender");
+	String submit = request.getParameter("command");
 	ApplicationDB db =  new ApplicationDB();
 	Connection con = db.getConnection();
 	
@@ -19,21 +20,17 @@
 	Statement stmt = con.createStatement();
 	
 	// Parse string itemnum attribute into an integer
-	int itemNum = Integer.parseInt((String)session.getAttribute("itemnum"));
+	String itemNum = (String)session.getAttribute("itemnum");
 	
 	// If the user clicked Remove auction
-	if(entity.equals("Remove")){
-		String query = "DELETE FROM ITEM WHERE itemnum = " + itemNum;
-		int rowsUpdated = stmt.executeUpdate(query);
-		if(rowsUpdated == 1){
-			out.print("You have succesfully deleted an auction.");
-		} else{
-			out.print("There was a problem deleting the auction.");
-		}
-	} else { // This means the user clicked Edit Info
-		
+	String query = "UPDATE Item SET " + entity + " = " + submit + " WHERE itemnum = " + itemNum;
+	int rowsUpdated = stmt.executeUpdate(query);
+	if(rowsUpdated == 1){
+		out.print("You have succesfully edited an auction.");
+		response.sendRedirect("http://localhost:8080/StoreWebsite/SearchListings.jsp");
+	} else{
+		out.print("There was a problem editing the auction.");
 	}
-
 %>
 		
 </body>
