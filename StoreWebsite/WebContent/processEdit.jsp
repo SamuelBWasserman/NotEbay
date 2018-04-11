@@ -12,7 +12,7 @@
 <%
 	//Get the selected command
 	String entity = request.getParameter("gender");
-	String submit = request.getParameter("command");
+	String submit = request.getParameter("newText");
 	ApplicationDB db =  new ApplicationDB();
 	Connection con = db.getConnection();
 	
@@ -23,10 +23,11 @@
 	String itemNum = (String)session.getAttribute("itemnum");
 	
 	// If the user clicked Remove auction
-	String query = "UPDATE Item SET " + entity + " = " + submit + " WHERE itemnum = " + itemNum;
+	String query = "UPDATE Item SET " + entity + " = \"" + submit + "\" WHERE itemnum = " + itemNum;
+	System.out.println(query);
 	int rowsUpdated = stmt.executeUpdate(query);
 	if(rowsUpdated == 1){
-		out.print("You have succesfully edited an auction.");
+		System.out.print("You have succesfully edited an auction.");
 		response.sendRedirect("http://localhost:8080/StoreWebsite/SearchListings.jsp");
 	} else{
 		out.print("There was a problem editing the auction.");

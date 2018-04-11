@@ -37,7 +37,6 @@
 			<form action = "processEdit.jsp">
   				<input type="radio" name="gender" value="name">Name<br>
   				<input type="radio" name="gender" value="description"> Description<br>
-			</form>
 			
 			
 				New Text: <input type="text" name="newText"><br>
