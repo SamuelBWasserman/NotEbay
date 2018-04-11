@@ -75,6 +75,7 @@ session.setAttribute("iNum", iNum);
 <label>$<%=result.getString(4)%></label>
 <br>
 
+
  
  		Bid: <input type="text" name="bidAmount"><br>>
 		<br>
@@ -112,6 +113,20 @@ session.setAttribute("iNum", iNum);
 	<form action = "processSearchListings.jsp">
 		<br>
   		<button type="submit" name="back" value="back">back</button>
+  		<br>
+	</form>
+	<%
+		String role = (String)session.getAttribute("role");
+		String enabled;
+		if(role.equals("Customer Rep")){
+			enabled = "enabled";
+		} else {
+			enabled = "disabled";
+		}
+	%>
+	<form action = "CustomerRepItemPage.jsp">
+		<br>
+  		<button type="submit" name="command" value="customerRep" <%= enabled %> >Customer Rep Page</button>
   		<br>
 	</form>
 	
