@@ -39,50 +39,6 @@
 			
 				session.setAttribute("username", username);
 				if(result.next() != false){
-<<<<<<< HEAD
-					// Set a cookie saving the username for one hour and send them to the dashboard
-					Cookie cookie = new Cookie("username",username);
-					cookie.setMaxAge(60*60*1);
-					response.addCookie(cookie);
-					
-					
-					
-					
-					String query2 ="SELECT max(itemnum) from Item;" ;
-					ResultSet result2 = stmt.executeQuery(query2);
-					if(result2.next() != false)
-					{
-						int newNum = result2.getInt(1) + 1;
-						session.setAttribute("itemNum", newNum);
-					}
-					else
-					{
-						session.setAttribute("itemNum", 1);
-					}
-					
-					
-					String query3 = "SELECT max(emailNum) from Email;" ;
-					ResultSet result3 = stmt.executeQuery(query3);
-					if(result3.next() != false)
-					{
-						int newENum = result3.getInt(1) + 1;
-						session.setAttribute("emailNum", newENum);
-					}
-					else
-					{
-						session.setAttribute("emailNum", 1);
-					}
-					
-					out.print(session.getAttribute("itemNum").toString());
-					out.print(session.getAttribute("emailNum").toString());
-					
-					
-=======
-					// Begin a session saving the username
-					// HttpSession sesh = request.getSession();
-					session.setAttribute("username", username);
->>>>>>> 98083136f7afe90d74edfbbc919f5b9cdc2c130f
-					
 					response.sendRedirect("http://localhost:8080/StoreWebsite/userDashboard.jsp");
 				} else{
 					out.print("A user with those credentials does not exist.");
