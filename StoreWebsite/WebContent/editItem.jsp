@@ -23,7 +23,8 @@
 	
 	// If the user clicked Remove auction
 	if(entity.equals("Remove")){
-		String query = "DELETE FROM ITEM WHERE itemnum = " + itemNum;
+		String query = "DELETE FROM Item WHERE itemnum = " + itemNum;
+		out.println(query);
 		int rowsUpdated = stmt.executeUpdate(query);
 		if(rowsUpdated == 1){
 			out.print("You have succesfully deleted an auction.");
@@ -33,11 +34,19 @@
 	} else { // This means the user clicked Edit Info
 		%>
 			<p> Select which field to edit. </p>
-			<form>
-  				<input type="radio" name="gender" value="Name"> Male<br>
-  				<input type="radio" name="gender" value="Description"> Female<br>
+			<form action = "processEdit.jsp">
+  				<input type="radio" name="gender" value="name">Name<br>
+  				<input type="radio" name="gender" value="description"> Description<br>
+			</form>
+			
+			
+				New Text: <input type="text" name="newText"><br>
+				<br>
+  					<button type="submit" name="command" value="Submit">Submit</button>
+  				<br>
 			</form>
 		<%
+		
 	}
 
 %>

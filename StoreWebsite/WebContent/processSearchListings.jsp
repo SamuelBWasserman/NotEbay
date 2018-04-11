@@ -27,10 +27,8 @@ try {
 
 		// Retrieve data about End User
 		String search = session.getAttribute("iSearch").toString();
-		out.print(search);
 		// Check if the name contains the searched name
-		String query = "SELECT * FROM Item I WHERE CONTAINS(name," + search + ")";
-		out.println(query);
+		String query = "SELECT * FROM Item I WHERE name LIKE \"%" + search + "%\"";
 		ResultSet result = stmt.executeQuery(query);
 		
 		List<String> listName = new ArrayList<String>();
@@ -77,12 +75,7 @@ try {
 		</form>
 		
 		<%
-		
-		
-		
-		//request.setAttribute("list", list);
-		//request.getRequestDispatcher("/WEB-INF/SearchListing.jsp").forward(request, response);
-
+	
 	//close the connection.
 	db.closeConnection(con);
 	//response.sendRedirect("http://localhost:8080/StoreWebsite/SearchListings.jsp");

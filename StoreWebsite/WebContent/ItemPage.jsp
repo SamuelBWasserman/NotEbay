@@ -8,11 +8,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Item</title>
-</head>
+</head> 
 <body>
 <%
-
-//out.print(request.getParameter("mySelect"));
 
 if(request.getParameter("mySelect") != null)
 {
@@ -26,28 +24,24 @@ if(session.getAttribute("itemSelect") == null)
 }
 else
 {
-	String itemSelected =session.getAttribute("itemSelect").toString();
+	String itemSelected = session.getAttribute("itemSelect").toString();
+	
 
 
-
-ApplicationDB db =  new ApplicationDB();
-Connection con = db.getConnection();
-
-//Create a SQL statement
-Statement stmt = con.createStatement();
-StringTokenizer st = new StringTokenizer(itemSelected);
-
-st.nextToken();
-String iNum = st.nextToken();
-session.setAttribute("iNum", iNum);
-	String query = "SELECT * FROM Item WHERE itemnum =  \"" + iNum + "\" ";
+	ApplicationDB db =  new ApplicationDB();
+	Connection con = db.getConnection();
+	
+	//Create a SQL statement
+	Statement stmt = con.createStatement();
+	
+	String query = "SELECT * FROM Item WHERE name = \"" + itemSelected + "\"";
 	
 	ResultSet result = stmt.executeQuery(query);
 	if(result.next())
 	{
 		session.setAttribute("itemnum", result.getString("itemnum"));
 		session.setAttribute("bidIncrement", result.getString("BidIncrement"));
-		session.setAttribute("currentBid",result.getString("currentBid"));
+		session.setAttribute("currentPrice",result.getString("currentPrice"));
 	%>
 <form action = "processItemBid.jsp" >
 
