@@ -118,7 +118,15 @@ try {
 	out.print(e);
 }
 %>
-
+<form action = "addToAlerts.jsp">
+		<br>
+			<button type="submit" name="command" value="AlertMe">AlertMe</button>
+		<br>
+		<% 
+		out.print(session.getAttribute("AlertList"));
+		session.setAttribute("AlertList", "");
+		%>
+</form>	
 <form action = "SearchListings.jsp">
 		<br>
 			<button type="submit" name="command" value="Back">Back</button>
