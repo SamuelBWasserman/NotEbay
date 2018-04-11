@@ -39,6 +39,11 @@ StringTokenizer st = new StringTokenizer(itemSelected);
 
 st.nextToken();
 String iNum = st.nextToken();
+
+while(st.hasMoreTokens())
+{
+	iNum = st.nextToken();
+}
 session.setAttribute("iNum", iNum);
 	String query = "SELECT * FROM Item WHERE itemnum =  \"" + iNum + "\" ";
 	
@@ -88,6 +93,7 @@ session.setAttribute("iNum", iNum);
 <%
 	}
 }
+
 
 
 %>

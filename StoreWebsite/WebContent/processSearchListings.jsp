@@ -55,8 +55,8 @@ try {
 		{
 		while(result.isAfterLast() == false)
 		{
-			listName.add(result.getString(8) + " " + result.getString(2));
-			listNum.add(result.getString(2));
+			listName.add(result.getString(8) + " " + result.getString(1));
+			listNum.add(result.getString(1));
 			result.next();
 		//list.add("hello");
 		//list.add("afsd");
@@ -68,10 +68,10 @@ try {
 		{
 		while(result2.isAfterLast() == false)
 		{
-			if(listNum.contains(result2.getString(2)))
+			if(listNum.contains(result2.getString(1)))
 			{
-				listName.add(result2.getString(8) + " " + result2.getString(2));
-				listNum.add(result2.getString(2));
+				listName.add(result2.getString(8) + " " + result2.getString(1));
+				listNum.add(result2.getString(1));
 			}
 			result2.next();
 			
