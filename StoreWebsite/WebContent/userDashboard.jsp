@@ -20,6 +20,9 @@
 		<form action = "SearchListings.jsp">
 			<button type="submit" name="SearchList" value="Search Listings">Search Listings</button>
 		</form>
+		<form action = "EmailBox.jsp">
+			<button type="submit" name="email" value="email">Check Email</button>		
+		</form>
 		<form action = "helpPage.jsp">
 			<button type="submit" name="help" value="Help">Help</button>		
 		</form>

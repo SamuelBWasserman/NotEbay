@@ -8,9 +8,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Item</title>
-</head> 
+</head>
 <body>
 <%
+
+//out.print(request.getParameter("mySelect"));
 
 if(request.getParameter("mySelect") != null)
 {
@@ -24,11 +26,17 @@ if(session.getAttribute("itemSelect") == null)
 }
 else
 {
-	String itemSelected = session.getAttribute("itemSelect").toString();
-	
+	String itemSelected =session.getAttribute("itemSelect").toString();
 
 
-<<<<<<< HEAD
+
+ApplicationDB db =  new ApplicationDB();
+Connection con = db.getConnection();
+
+//Create a SQL statement
+Statement stmt = con.createStatement();
+StringTokenizer st = new StringTokenizer(itemSelected);
+
 st.nextToken();
 String iNum = st.nextToken();
 
@@ -38,50 +46,39 @@ while(st.hasMoreTokens())
 }
 session.setAttribute("iNum", iNum);
 	String query = "SELECT * FROM Item WHERE itemnum =  \"" + iNum + "\" ";
-=======
-	ApplicationDB db =  new ApplicationDB();
-	Connection con = db.getConnection();
-	
-	//Create a SQL statement
-	Statement stmt = con.createStatement();
-	
-	String query = "SELECT * FROM Item WHERE name = \"" + itemSelected + "\"";
->>>>>>> 3390d31c8f1c0973ab945a145876429002bb5f43
 	
 	ResultSet result = stmt.executeQuery(query);
 	if(result.next())
 	{
-		session.setAttribute("itemnum", result.getString("itemnum"));
-		session.setAttribute("bidIncrement", result.getString("BidIncrement"));
-		session.setAttribute("currentPrice",result.getString("currentPrice"));
+		session.setAttribute("bidIncrement", result.getString(6));
+		session.setAttribute("currentBid",result.getString(4));
 	%>
 <form action = "processItemBid.jsp" >
 
 <br>
 <label> Item Number:  </label>
-<label><%=result.getString("itemnum")%></label>
+<label><%=result.getString(2)%></label>
 <br>
 
 <br>
 <label> Description:  </label>
-<label><%=result.getString("description")%></label>
+<label><%=result.getString(8)%></label>
 <br>
 
 <br>
 <label> Seller:  </label>
-<label><%=result.getString("seller")%></label>
+<label><%=result.getString(7)%></label>
 <br>
 
 <br>
 <label> Bid Increment:  </label>
-<label>$<%=result.getString("bidIncrement")%></label>
+<label>$<%=result.getString(6)%></label>
 <br>
 
 <br>
 <label> Current Price: </label>
-<label>$<%=result.getString("currentPrice")%></label>
+<label>$<%=result.getString(4)%></label>
 <br>
-
 
  
  		Bid: <input type="text" name="bidAmount"><br>>
@@ -121,20 +118,6 @@ session.setAttribute("iNum", iNum);
 	<form action = "processSearchListings.jsp">
 		<br>
   		<button type="submit" name="back" value="back">back</button>
-  		<br>
-	</form>
-	<%
-		String role = (String)session.getAttribute("role");
-		String enabled;
-		if(role.equals("Customer Rep")){
-			enabled = "enabled";
-		} else {
-			enabled = "disabled";
-		}
-	%>
-	<form action = "CustomerRepItemPage.jsp">
-		<br>
-  		<button type="submit" name="command" value="customerRep" <%= enabled %> >Customer Rep Page</button>
   		<br>
 	</form>
 	
