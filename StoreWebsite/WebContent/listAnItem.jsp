@@ -14,6 +14,10 @@
 	<form action = "processListItem.jsp">
 		Item Name: <input type="text" name="itemname"><br>
 		Description: <input type="text" name="descrp"><br>
+		<p>Category</p>
+  		<input type="radio" name="gender" value="Computer Components">Computer Components
+  		<input type="radio" name="gender" value="Peripherals"> Peripherals
+  		<input type="radio" name="gender" value="Software"> Software<br>
   		Initial Price: <input type="text" name="initprice"><br>
   		Min Sell Price: <input type="text" name="minsell"><br>
   		Bid Increment: <input type="text" name="bidincr"><br>

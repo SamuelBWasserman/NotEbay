@@ -1,3 +1,4 @@
+<!-- Written in part by Josh Raslovsky and Sam Wasserman  -->
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="com.StoreWebsite.pkg.*"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
@@ -54,6 +55,7 @@ session.setAttribute("iNum", iNum);
 		session.setAttribute("currentBid",result.getString(4));
 	%>
 <form action = "processItemBid.jsp" >
+<<<<<<< HEAD
 
 <br>
 <label> Item Number:  </label>
@@ -85,9 +87,40 @@ session.setAttribute("iNum", iNum);
 		<br>
   		<button type="submit" name="bid" value="Bid">Bid</button>
   		<br>
+=======
+		<label><%=itemSelected%></label>
+	<br>
+	
+		<label> Description:  </label>
+		<label><%=result.getString("description")%></label>
+	<br>
+	
+		<label> Seller:  </label>
+		<label><%=result.getString("seller")%></label>
+	<br>
+	
+		<label> Bid Increment:  </label>
+		<label>$<%=result.getString("bidIncrement")%></label>
+	<br>
+	
+		<label> Current Price: </label>
+		<label>$<%=result.getString("currentPrice")%></label>
+	<br>
+	
+	
+	 
+	 	Bid: <input type="text" name="bidAmount">
+	  	<button type="submit" name="bid" value="Bid">Bid</button>
+	<br>
+>>>>>>> aca4ce2f118a82c918f41147fd1eb21231ee74c7
   		
 </form>
+<br>
+<form action = "processAutoBid.jsp">
+	 Max Bid: <input type="text" name="maxBid">
+	<button type="submit" name="autoBid" value="autoBid">Auto Bid</button>
 
+</form>
 
 
 <%
@@ -102,16 +135,13 @@ session.setAttribute("iNum", iNum);
 <form action = "bidHistory.jsp">
 		<br>
   		<button type="submit" name="bhistory" value="Bid History">Bid History</button>
-  		<br>
 	</form>
 
 	<form action = "processWatchList.jsp">
-		<br>
   		<button type="submit" name="addToWatchList" value="Watch List">Watch List</button>
-  		<br>
 	</form>
 	
-<label>$<%=session.getAttribute("BidOutcome").toString()%></label>
+<label><%=session.getAttribute("BidOutcome").toString()%></label>
 <% session.setAttribute("bidOutcome", "");%>
 
 

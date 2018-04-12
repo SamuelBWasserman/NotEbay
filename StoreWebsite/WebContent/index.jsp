@@ -11,7 +11,7 @@
 		<title>Login Page</title>
 	</head>
 	<body>
-		<h1>Welcome to the Store</h1>
+		<h1>Welcome to the Computer Store</h1>
 									  
 		<br>
 		<div class = "left">
