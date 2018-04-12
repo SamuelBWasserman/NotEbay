@@ -14,19 +14,8 @@ try {
 	out.print(section);
 	//Create a SQL statement
 	Statement stmt = con.createStatement();
-	//Get the selected 
-	//String entity = request.getParameter("listing");
 	int temp1 = 0;
 	String temp2  = "name";
-	//String insert = "INSERT INTO Item VALUES(\"00/00/0000\",\"0001\",\"10\",\"1\",\"1\",\"Seller\",\"descript\",\"name\")";
-	//String insert = "INSERT INTO Item VALUES(\"" + temp2 + "\",\"" + temp2 + "\",\"" + temp1 + "\",\"" + temp1 + "\",\"" + temp1 + "\",\"" + temp1 + "\",\"" + temp2 + "\",\"" + temp2 + "\")";
-	//Run the query against the database.
-	//int rowsUpdated = stmt.executeUpdate(insert);
-	//if(rowsUpdated == 1){
-		//out.print("You have succesfully created an account.");
-//	} else{
-	//	out.print("A user with those credentials already exists.");
-	//};
 		
 		if(session.getAttribute("iSearch") == null)
 		{
@@ -38,25 +27,19 @@ try {
 			session.setAttribute("iSearch", request.getParameter("search"));	
 		}
 
-	// Retrieve data about End User
+		// Retrieve data about End User
 		String search = session.getAttribute("iSearch").toString();
-		out.print(search);
-		String query = "SELECT * FROM Item I WHERE name LIKE \"" + search + "\";"; //\"" + search ;
-		//also need to query to see if description contains search
-		//out.print("TEST");
-		//Run the query against the database.
+		// Check if the name contains the searched name
+		String query = "SELECT * FROM Item I WHERE name LIKE \"%" + search + "%\"";
 		ResultSet result = stmt.executeQuery(query);
-		//out.print("testig");
-		
-		int i = 0;
 		
 		List<String> listName = new ArrayList<String>();
 		List<String> listNum = new ArrayList<String>();
 		
-		if(result.next())
+	
+		while(result.next())
 		{
-		while(result.isAfterLast() == false)
-		{
+<<<<<<< HEAD
 			listName.add(result.getString(8) + " " + result.getString(1));
 			listNum.add(result.getString(1));
 			result.next();
@@ -78,7 +61,11 @@ try {
 			result2.next();
 			
 		}
+=======
+			listName.add(result.getString("name"));
+>>>>>>> 3390d31c8f1c0973ab945a145876429002bb5f43
 		}
+		
 		%>
  
 		
@@ -91,12 +78,19 @@ try {
 
 		// some how u fill both the arrays from database or hard-coded 
 		//it depends on you
-		for (int z=0; z< listName.size(); z++){
+		for (int z = 0; z< listName.size(); z++){
 		if(listName.get(z) != null)
 		%>
 		<option value="<%=listName.get(z) %>"><%= listName.get(z) %></option>
 		
 		<%
+		String itemNumQuery = "SELECT itemnum FROM Item WHERE name = " + listName.get(z);
+		ResultSet itemNumResult = stmt.executeQuery(query);
+		String itemnum = "";
+		if(itemNumResult.next()){
+			itemnum = itemNumResult.getString("itemnum");
+		}
+		session.setAttribute("itemnum", itemnum);
 		}
 		%>
 
@@ -107,12 +101,7 @@ try {
 		</form>
 		
 		<%
-		
-		
-		
-		//request.setAttribute("list", list);
-		//request.getRequestDispatcher("/WEB-INF/SearchListing.jsp").forward(request, response);
-
+	
 	//close the connection.
 	db.closeConnection(con);
 	//response.sendRedirect("http://localhost:8080/StoreWebsite/SearchListings.jsp");

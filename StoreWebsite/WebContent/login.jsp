@@ -36,9 +36,8 @@
 				String query = "SELECT * FROM User U WHERE username = \"" + username + "\" AND password = \"" + password + "\"";
 				//Run the query against the database.
 				ResultSet result = stmt.executeQuery(query);
-			
-				session.setAttribute("username", username);
 				if(result.next() != false){
+<<<<<<< HEAD
 					// Set a cookie saving the username for one hour and send them to the dashboard
 					Cookie cookie = new Cookie("username",username);
 					cookie.setMaxAge(60*60*1);
@@ -80,19 +79,27 @@
 					session.setAttribute("username", username);
 					
 
+=======
+					// Begin a session saving the username
+					// HttpSession sesh = request.getSession();
+					session.setAttribute("username", username);
+					session.setAttribute("role", result.getString("role"));
+					
+>>>>>>> 3390d31c8f1c0973ab945a145876429002bb5f43
 					response.sendRedirect("http://localhost:8080/StoreWebsite/userDashboard.jsp");
 				} else{
 					out.print("A user with those credentials does not exist.");
 				}
 			}
-			
-			
 			//close the connection.
 			db.closeConnection(con);
 			
 		} catch (Exception e) {
+<<<<<<< HEAD
 			out.print(e);
 		
+=======
+>>>>>>> 3390d31c8f1c0973ab945a145876429002bb5f43
 		}
 	%>
 

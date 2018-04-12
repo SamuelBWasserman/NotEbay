@@ -24,7 +24,7 @@
 			if(itemName.isEmpty()|| description.isEmpty()|| initPrice.isEmpty()|| minSell.isEmpty()||bidIncr.isEmpty()){
 				session.setAttribute("listOutcome","Please Enter All Fields");
 				response.sendRedirect("http://localhost:8080/StoreWebsite/listAnItem.jsp");
-			} 
+			}
 			else{
 				 SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//dd/MM/yyyy
 				  Date now = new Date();

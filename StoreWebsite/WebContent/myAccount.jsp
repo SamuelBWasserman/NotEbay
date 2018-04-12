@@ -11,6 +11,15 @@ pageEncoding="ISO-8859-1" import="com.StoreWebsite.pkg.*"%>
 		<title>My Account</title>
 	</head>
 	<body>
+	<%
+		String role = (String)session.getAttribute("role");
+		String enabled;
+		if(role.equals("Admin")){
+			enabled = "enabled";
+		} else {
+			enabled = "disabled";
+		}
+	%>
 		<h1>My Account</h1>
 		<form action = "DeleteAccount.jsp">
 			<button type="submit" name="deleteAccount" value="Delete Account">Delete Account</button>
@@ -20,6 +29,10 @@ pageEncoding="ISO-8859-1" import="com.StoreWebsite.pkg.*"%>
 		</form>		
 		<form action = "logout.jsp">
 			<button type="submit" name="logout" value="logout">Log Out</button>
-		</form>				  
+		</form>				
+		</form>
+		<form action = "AdminPage.jsp">
+			<button type="submit" name="adminPage" value="Admin" <%= enabled %>>Admin</button>
+		</form>	  
 	</body>
 </html>

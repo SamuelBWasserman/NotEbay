@@ -18,10 +18,10 @@
 		
 		
 		<form action = "removeBid.jsp">
-			Seller: <input type="text" name="seller"><br>
-  			Bid: <input type="text" name="bid"><br>
+			Bidder: <input type="text" name="bidder"><br>
+  			Bid Number: <input type="text" name="bid"><br>
 		<br>
-  			<button type="submit" name="command" value="Log In">Remove Bid</button>
+  			<button type="submit" name="command" value="Submit">Remove Bid</button>
   		<br>
 	</form>
 </body>
