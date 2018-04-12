@@ -29,15 +29,30 @@
 			int currentPriceInt = (int)Integer.parseInt(currentPrice);
 			
 			// This means the bid is valid
-			if(requestedBidInt - currentPriceInt >= bidIncrementInt){		
+			if(requestedBidInt - currentPriceInt >= bidIncrementInt){	
+				// Querys that insert the Bid and update the current price
 				String query = "UPDATE Item Set currentPrice = " + requestedBid + " Where itemnum =  " + itemnum;
 				String bidQuery = "INSERT INTO Bid(ammount,bidder,itemnum,datetime,winningbid) VALUES(" + requestedBid + ", \"" + username + "\"," + itemnum + "," + date.getTime() + ", 0)";
-				System.out.println(query);
-				System.out.println(bidQuery);
+				
 				//Run the query against the database.
 				int itemRowsUpdated = stmt.executeUpdate(query);
 				int bidRowsUpdated = stmt.executeUpdate(bidQuery);
 				session.setAttribute("BidOutcome","Bid Successful");
+				String isThereAnAutoBidder = "SELECT * FROM AutoBid A WHERE A.itemnum = " + itemnum;
+				ResultSet result = stmt.executeQuery(isThereAnAutoBidder);
+				if(result.next()){ // There is an auto bidder
+					// Check if an auto bid can take place
+					int autoBidAmount = requestedBidInt + bidIncrementInt;
+					if(autoBidAmount < (int)(Integer.parseInt(result.getString("maxBid")))){
+						String autoBidQuery = "INSERT INTO Bid(ammount,bidder,itemnum,datetime,winningbid) VALUES(" + autoBidAmount + ", \"" + itemnum + "," + date.getTime() + ", 0)";
+						String update = "UPDATE Item Set currentPrice = " + autoBidAmount + " Where itemnum =  " + itemnum;
+						int bidUpdate = stmt.executeUpdate(query);
+						int itemUpdate = stmt.executeUpdate(update);
+					}
+				} else { // There is not so do nothing in this case
+					
+				}
+				
 			} else	{
 				session.setAttribute("BidOutcome","Bid Must Be Greater than Current Bid By $" + bidIncrement);
 			}
