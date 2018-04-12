@@ -45,37 +45,37 @@ else
 	%>
 <form action = "processItemBid.jsp" >
 
-<br>
-<label> Item Number:  </label>
-<label><%=result.getString("itemnum")%></label>
-<br>
-
-<br>
-<label> Description:  </label>
-<label><%=result.getString("description")%></label>
-<br>
-
-<br>
-<label> Seller:  </label>
-<label><%=result.getString("seller")%></label>
-<br>
-
-<br>
-<label> Bid Increment:  </label>
-<label>$<%=result.getString("bidIncrement")%></label>
-<br>
-
-<br>
-<label> Current Price: </label>
-<label>$<%=result.getString("currentPrice")%></label>
-<br>
-
-
- 
- 		Bid: <input type="text" name="bidAmount"><br>>
-		<br>
-  		<button type="submit" name="bid" value="Bid">Bid</button>
-  		<br>
+	<br>
+		<label> Item Number:  </label>
+		<label><%=result.getString("itemnum")%></label>
+	<br>
+	
+	<br>
+		<label> Description:  </label>
+		<label><%=result.getString("description")%></label>
+	<br>
+	
+	<br>
+		<label> Seller:  </label>
+		<label><%=result.getString("seller")%></label>
+	<br>
+	
+	<br>
+		<label> Bid Increment:  </label>
+		<label>$<%=result.getString("bidIncrement")%></label>
+	<br>
+	
+	<br>
+		<label> Current Price: </label>
+		<label>$<%=result.getString("currentPrice")%></label>
+	<br>
+	
+	
+	 
+	 	Bid: <input type="text" name="bidAmount"><br>>
+	<br>
+	  	<button type="submit" name="bid" value="Bid">Bid</button>
+	<br>
   		
 </form>
 

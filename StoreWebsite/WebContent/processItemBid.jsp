@@ -30,10 +30,13 @@
 			
 			// This means the bid is valid
 			if(requestedBidInt - currentPriceInt >= bidIncrementInt){		
-				String query = "UPDATE Item Set currentPrice = \"" + requestedBid + "\" Where itemnum =  \"" + session.getAttribute("iNum") + "\"";
-				String bidQuery = "INSERT INTO Bid(ammount,bidder,itmnum,datetime,winningbid) VALUES(" + requestedBid + "," + username + "," + itemnum + "," + date.getTime() + ", 0)";
+				String query = "UPDATE Item Set currentPrice = " + requestedBid + " Where itemnum =  " + itemnum;
+				String bidQuery = "INSERT INTO Bid(ammount,bidder,itemnum,datetime,winningbid) VALUES(" + requestedBid + ", \"" + username + "\"," + itemnum + "," + date.getTime() + ", 0)";
+				System.out.println(query);
+				System.out.println(bidQuery);
 				//Run the query against the database.
-				int rowsUpdated = stmt.executeUpdate(query);
+				int itemRowsUpdated = stmt.executeUpdate(query);
+				int bidRowsUpdated = stmt.executeUpdate(bidQuery);
 				session.setAttribute("BidOutcome","Bid Successful");
 			} else	{
 				session.setAttribute("BidOutcome","Bid Must Be Greater than Current Bid By $" + bidIncrement);
