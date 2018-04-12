@@ -19,20 +19,30 @@
 			String minSell = request.getParameter("minsell");
 			String bidIncr = request.getParameter("bidincr");
 			String category = request.getParameter("gender");
-			String length =  request.getParameter("length");
+			String length =  request.getParameter("length"); // length is in hours
 			// Check that the passwords match.
 			if(itemName.isEmpty()|| description.isEmpty()|| initPrice.isEmpty()|| minSell.isEmpty()||bidIncr.isEmpty()){
 				session.setAttribute("listOutcome","Please Enter All Fields");
 				response.sendRedirect("http://localhost:8080/StoreWebsite/listAnItem.jsp");
 			}
 			else{
-				 SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//dd/MM/yyyy
-				  Date now = new Date();
-				  String strDate = sdfDate.format(now);
+				SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//dd/MM/yyyy
+				Date now = new Date();
+				String strDate = sdfDate.format(now);
 				String query = "INSERT INTO Item (dateadded, itemType, minsell, initprice, currentPrice, bidincrement, seller, description, length, name) VALUES(\"" +strDate + "\",\"" + category + "\",\"" + minSell + "\",\"" + initPrice + "\",\"" + initPrice + "\",\"" + bidIncr + "\",\"" +  session.getAttribute("username") + "\",\"" + description + "\",\"" + length + "\",\"" + itemName + "\")";
 				//Run the query against the database
 				int rowsUpdated = stmt.executeUpdate(query);
-				if(rowsUpdated == 1){
+				ResultSet r = stmt.getGeneratedKeys();
+				if(rowsUpdated == 1 && r.next()){
+					// Get the itemnum and add it to the schedule
+					String id = r.getString(1);
+					Date endDate = new Date();
+					Calendar c = Calendar.getInstance();
+					c.setTime(now);
+					c.add(Calendar.DATE, Integer.parseInt(length));
+					endDate = c.getTime();
+					Timer timer = new Timer();
+					timer.schedule(new EndAuction(id), 0, endDate);
 					out.print("You have added and item.");
 				} else{
 					out.print("Please Enter All Fields");
