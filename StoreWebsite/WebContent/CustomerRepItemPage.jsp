@@ -23,6 +23,8 @@
 		<br>
   			<button type="submit" name="command" value="Submit">Remove Bid</button>
   		<br>
-	</form>
+		</form>
+	
+		
 </body>
 </html>
