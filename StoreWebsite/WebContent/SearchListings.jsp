@@ -11,13 +11,20 @@
 <body>
 
 
-<form action = "processSearchListings.jsp">
+	<form action = "processSearchListings.jsp">
 	
 			Search: <input type="text" name="search"><br>
 		<br>
 			<button type="submit" name="command" value="Search">listing</button>
 		<br>
-	</form>			
+	</form>		
+	
+	<form action = "addToAlerts.jsp">
+	
+			Item to Add: <input type="text" name="search">
+			<button type="submit" name="command" value="submit">Add to Alerts</button>
+		<br>
+	</form>		
 	
 	
 	  
