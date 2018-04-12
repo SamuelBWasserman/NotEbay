@@ -44,7 +44,6 @@ else
 		session.setAttribute("currentPrice",result.getString("currentPrice"));
 	%>
 <form action = "processItemBid.jsp" >
-
 		<label><%=itemSelected%></label>
 	<br>
 	
