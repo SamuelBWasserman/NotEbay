@@ -45,40 +45,39 @@ else
 	%>
 <form action = "processItemBid.jsp" >
 
-	<br>
 		<label> Item Number:  </label>
 		<label><%=result.getString("itemnum")%></label>
 	<br>
 	
-	<br>
 		<label> Description:  </label>
 		<label><%=result.getString("description")%></label>
 	<br>
 	
-	<br>
 		<label> Seller:  </label>
 		<label><%=result.getString("seller")%></label>
 	<br>
 	
-	<br>
 		<label> Bid Increment:  </label>
 		<label>$<%=result.getString("bidIncrement")%></label>
 	<br>
 	
-	<br>
 		<label> Current Price: </label>
 		<label>$<%=result.getString("currentPrice")%></label>
 	<br>
 	
 	
 	 
-	 	Bid: <input type="text" name="bidAmount"><br>>
-	<br>
+	 	Bid: <input type="text" name="bidAmount">
 	  	<button type="submit" name="bid" value="Bid">Bid</button>
 	<br>
   		
 </form>
+<br>
+<form action = "processAutoBid.jsp">
+	 Max Bid: <input type="text" name="maxBid">
+	<button type="submit" name="autoBid" value="autoBid">Auto Bid</button>
 
+</form>
 
 
 <%
@@ -92,16 +91,13 @@ else
 <form action = "bidHistory.jsp">
 		<br>
   		<button type="submit" name="bhistory" value="Bid History">Bid History</button>
-  		<br>
 	</form>
 
 	<form action = "processWatchList.jsp">
-		<br>
   		<button type="submit" name="addToWatchList" value="Watch List">Watch List</button>
-  		<br>
 	</form>
 	
-<label>$<%=session.getAttribute("BidOutcome").toString()%></label>
+<label><%=session.getAttribute("BidOutcome").toString()%></label>
 <% session.setAttribute("bidOutcome", "");%>
 
 
