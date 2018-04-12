@@ -79,6 +79,7 @@
 					// HttpSession sesh = request.getSession();
 					session.setAttribute("username", username);
 					
+
 					response.sendRedirect("http://localhost:8080/StoreWebsite/userDashboard.jsp");
 				} else{
 					out.print("A user with those credentials does not exist.");

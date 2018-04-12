@@ -9,7 +9,9 @@ try {
 	String entity = request.getParameter("command");
 	ApplicationDB db =  new ApplicationDB();
 	Connection con = db.getConnection();
-
+	String section = request.getParameter("sectionSelect");
+	
+	out.print(section);
 	//Create a SQL statement
 	Statement stmt = con.createStatement();
 	//Get the selected 
