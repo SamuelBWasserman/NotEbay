@@ -35,9 +35,9 @@ if(result.next())
 {
 while(result.isAfterLast() == false)
 {
-	currentPrice.add(result.getString(4));
-	Seller.add(result.getString(7));
-	Name.add(result.getString(10));
+	currentPrice.add(result.getString("currentPrice"));
+	Seller.add(result.getString("seller"));
+	Name.add(result.getString("name"));
 	result.next();
 //list.add("hello");
 //list.add("afsd");
