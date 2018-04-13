@@ -40,7 +40,7 @@
 					Date endDate = new Date();
 					Calendar c = Calendar.getInstance();
 					c.setTime(now);
-					c.add(Calendar.DATE, Integer.parseInt(length));
+					c.add(Calendar.HOUR_OF_DAY, Integer.parseInt(length));
 					endDate = c.getTime();
 					Timer timer = new Timer();
 					timer.schedule(new AuctionHandler(id), endDate);

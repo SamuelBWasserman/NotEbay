@@ -8,11 +8,16 @@ import com.StoreWebsite.pkg.*;
 
 public class AuctionHandler extends TimerTask {
 	
-		private String itemnum = "";
+		private String itemnum;
 		
 		// Sets the winning bid and emails winning bidder
-		public AuctionHandler (String itemnum) {
+		public AuctionHandler(String itemnum) {
 			this.itemnum = itemnum;
+		}
+		
+		// This will run the EndAuction method
+		public void run() {
+			String id = this.itemnum;
 			try {
 				// make conn to DB
 				ApplicationDB db =  new ApplicationDB();
@@ -22,16 +27,16 @@ public class AuctionHandler extends TimerTask {
 				Statement stmt = con.createStatement();
 			
 				// Find winningBid and set accordingly
-				String query = "UPDATE Bid b INNER JOIN Item i ON i.itemnum=b.itemnum SET b.winningBid=1 WHERE b.itemnum=" + itemnum + " AND i.currentPrice=b.ammount";
+				String query = "UPDATE Bid b INNER JOIN Item i ON i.itemnum=b.itemnum SET b.winningBid=1 WHERE b.itemnum=" + id + " AND i.currentPrice=b.ammount";
 			
 				// Get the resultset of the query
 				int r = stmt.executeUpdate(query);
 				
-				String emailBidder = "You have won the auction for item number:" + itemnum;
+				String emailBidder = "You have won the auction for item number:" + id;
 				String winningBidder = "";
 				
 				if (r==1) {
-					query = "SELECT * FROM Bid FROM Bid WHERE Bid.itemnum=Item.itemnum AND Bid.itemnum=" + itemnum;
+					query = "SELECT * FROM Bid FROM Bid WHERE Bid.itemnum=Item.itemnum AND Bid.itemnum=" + id;
 					ResultSet result = stmt.executeQuery(query);
 					if(result.next()) {
 						winningBidder = result.getString("bidder");
@@ -44,19 +49,12 @@ public class AuctionHandler extends TimerTask {
 						}
 					}
 				} else {
-					System.out.println("Error: Row with id " + itemnum + " does not exist, could not be updated or there are no current bids on the item.");
+					System.out.println("Error: Row with id " + id + " does not exist, could not be updated or there are no current bids on the item.");
 				}
 				
 			} catch (Exception e) {
 				System.out.println("A SQL error occured.");
 				System.out.print(e);
 			}
-		}
-		
-		// This will run the EndAuction method
-		@Override 
-		public void run ( ) {
-			// Put logs here?
-			System.out.println("Ending Auction...");
 		}
 }
