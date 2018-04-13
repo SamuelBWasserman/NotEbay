@@ -5,7 +5,7 @@
 <%
 		try {
 			//Get the selected command
-			String iNum = session.getAttribute("iNum").toString();
+			String itemnum = session.getAttribute("itemnum").toString();
 			String user = session.getAttribute("username").toString();
 			
 			ApplicationDB db =  new ApplicationDB();
@@ -16,7 +16,8 @@
 			
 			
 			// Insert the users username and password into the database	
-				String query2 = "INSERT Into WatchList Values(\"" + iNum + "\",\"" + user + "\")";
+				String query2 = "INSERT Into WatchList Values(\"" + itemnum + "\",\"" + user + "\")";
+				System.out.print(query2);
 				stmt.executeUpdate(query2);
 				
 				//close the connection.
@@ -24,6 +25,7 @@
 			response.sendRedirect("ItemPage.jsp");
 		} catch (Exception e) 
 		{
-			out.print(e);
+			response.sendRedirect("ItemPage.jsp");
+			System.out.print(e);
 		}
 	%>
