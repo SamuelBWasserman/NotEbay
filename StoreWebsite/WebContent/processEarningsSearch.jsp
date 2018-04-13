@@ -20,21 +20,21 @@ pageEncoding="ISO-8859-1" import="com.StoreWebsite.pkg.*"%>
 			String result = "";
 
 			if(entityType.equals("item")){
-				String query = "SELECT SUM(Item.currentPrice) AS \"EARNINGS\" FROM Item, Bid WHERE Item.name=" + entity +" AND Bid.bidder=Item.seller AND Bid.winningBid=1;";
+				String query = "SELECT SUM(Item.currentPrice) AS \"EARNINGS\" FROM Item, Bid WHERE Item.name=\"" + entity +"\" AND Bid.bidder=Item.seller AND Bid.winningBid=1";
 		        
 		        r = stmt.executeQuery(query);
 		        if(r.next()){
 		        	result = r.getString("EARNINGS");
 		        }
 			} else if(entityType.equals("item type")){
-				String query = "SELECT SUM(Item.currentPrice) AS \"EARNINGS\" FROM Item, Bid WHERE Item.itemnum=" + entity +" AND Bid.bidder=Item.seller AND Bid.winningBid=1;";
+				String query = "SELECT SUM(Item.currentPrice) AS \"EARNINGS\" FROM Item, Bid WHERE Item.itemType=\"" + entity +"\" AND Bid.bidder=Item.seller AND Bid.winningBid=1";
 		        
 		        r = stmt.executeQuery(query);
 		        if(r.next()){
 		        	result = r.getString("EARNINGS");
 		        }
 			} else {
-				String query = "SELECT SUM(Item.currentPrice) AS \"EARNINGS\" FROM Item, Bid WHERE Item.seller=" + entity +" AND Bid.bidder=Item.seller AND Bid.winningBid=1;";
+				String query = "SELECT SUM(Item.currentPrice) AS \"EARNINGS\" FROM Item, Bid WHERE Item.seller=\"" + entity +"\" AND Bid.bidder=Item.seller AND Bid.winningBid=1";
 		        
 		        r = stmt.executeQuery(query);
 		        if(r.next()){
@@ -46,17 +46,13 @@ pageEncoding="ISO-8859-1" import="com.StoreWebsite.pkg.*"%>
 		
 		<table width="59%" border="1">
 				<tr>
-					<td><b><%= entityType %>></b></td>
+					<td><b><%= entityType %></b></td>
 					<td><b>Earnings</b></td>
 				</tr>
    
                 <tr>
-                     <td>
-                     <%= entity %>
-                     </td>
-                     <td>
-                     <%= result %>
-                     </td>
+                     <td><%= entity %></td>
+                     <td><%= result %></td>
                 </tr>
      	</table>
 		

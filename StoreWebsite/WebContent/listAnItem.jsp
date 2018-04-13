@@ -21,7 +21,7 @@
   		Initial Price(Integer): <input type="text" name="initprice"><br>
   		Min Sell Price(Integer): <input type="text" name="minsell"><br>
   		Bid Increment(Integer): <input type="text" name="bidincr"><br>
-  		Length(Days): <input type="text" name="length"><br>
+  		Length(Hours): <input type="text" name="length"><br>
 		<br>
   		<button type="submit" name="command" value="List Item">List Item</button>
   		<br>
