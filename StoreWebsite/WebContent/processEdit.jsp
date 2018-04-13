@@ -28,7 +28,7 @@
 	int rowsUpdated = stmt.executeUpdate(query);
 	if(rowsUpdated == 1){
 		System.out.print("You have succesfully edited an auction.");
-		response.sendRedirect("http://localhost:8080/StoreWebsite/SearchListings.jsp");
+		response.sendRedirect("SearchListings.jsp");
 	} else{
 		out.print("There was a problem editing the auction.");
 	}

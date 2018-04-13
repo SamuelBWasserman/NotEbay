@@ -25,12 +25,12 @@
 			String query = "INSERT INTO AutoBid(username, itemnum, maxBid) VALUES(\"" + username + "\"," + itemnum + "," + maxBid + ")";
 			int rowsUpdated = stmt.executeUpdate(query);
 			if(rowsUpdated == 1){
-				response.sendRedirect("http://localhost:8080/StoreWebsite/ItemPage.jsp");
+				response.sendRedirect("ItemPage.jsp");
 			} else{
 			}
 			//close the connection.
 			db.closeConnection(con);	
-			response.sendRedirect("http://localhost:8080/StoreWebsite/ItemPage.jsp");
+			response.sendRedirect("ItemPage.jsp");
 		} catch (Exception e) 
 		{
 			out.print(e);
