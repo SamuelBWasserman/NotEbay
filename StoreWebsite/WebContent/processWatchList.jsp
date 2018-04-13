@@ -21,7 +21,7 @@
 				
 				//close the connection.
 			db.closeConnection(con);	
-			response.sendRedirect("http://localhost:8080/StoreWebsite/ItemPage.jsp");
+			response.sendRedirect("ItemPage.jsp");
 		} catch (Exception e) 
 		{
 			out.print(e);

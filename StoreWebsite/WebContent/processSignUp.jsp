@@ -33,7 +33,7 @@
 			}
 			//close the connection.
 			db.closeConnection(con);	
-			response.sendRedirect("http://localhost:8080/StoreWebsite/userDashboard.jsp");
+			response.sendRedirect("userDashboard.jsp");
 		} catch (Exception e) {
 			out.print(e);
 		}
