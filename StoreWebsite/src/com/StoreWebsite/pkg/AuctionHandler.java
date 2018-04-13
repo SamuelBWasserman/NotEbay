@@ -8,10 +8,11 @@ import com.StoreWebsite.pkg.*;
 
 public class AuctionHandler extends TimerTask {
 	
-		private final String itemnum = "";
+		private String itemnum = "";
 		
 		// Sets the winning bid and emails winning bidder
-		public void EndAuction (String itemnum) {
+		public AuctionHandler (String itemnum) {
+			this.itemnum = itemnum;
 			try {
 				// make conn to DB
 				ApplicationDB db =  new ApplicationDB();
@@ -21,7 +22,7 @@ public class AuctionHandler extends TimerTask {
 				Statement stmt = con.createStatement();
 			
 				// Find winningBid and set accordingly
-				String query = "UPDATE Bid SET Bid.winningBid=1 WHERE Item.itemnum=" + "'" + itemnum + "'" + " AND Item.itemnum=Bid.Itemnum AND Item.currentPrice=Bid.ammount";
+				String query = "UPDATE Bid b INNER JOIN Item i ON i.itemnum=b.itemnum SET b.winningBid=1 WHERE b.itemnum=" + itemnum + " AND i.currentPrice=b.ammount";
 			
 				// Get the resultset of the query
 				int r = stmt.executeUpdate(query);
@@ -30,11 +31,11 @@ public class AuctionHandler extends TimerTask {
 				String winningBidder = "";
 				
 				if (r==1) {
-					query = "SELECT * FROM Bid FROM Bid WHERE Bid.itemnum=Item.itemnum AND Bid.itemnum='" + itemnum + "'";
+					query = "SELECT * FROM Bid FROM Bid WHERE Bid.itemnum=Item.itemnum AND Bid.itemnum=" + itemnum;
 					ResultSet result = stmt.executeQuery(query);
 					if(result.next()) {
 						winningBidder = result.getString("bidder");
-						query = "INSERT INTO Email VALUES('AUCTION ENDED', '"+ emailBidder +"', 'donotreply','" + winningBidder + "')";
+						query = "INSERT INTO Email VALUES(\"AUCTION ENDED\", \""+ emailBidder +"\", \"donotreply\",\"" + winningBidder + "\")";
 						int rowsAdded = stmt.executeUpdate(query);
 						if(rowsAdded==1) {
 							System.out.print("Emailed user");
@@ -43,16 +44,19 @@ public class AuctionHandler extends TimerTask {
 						}
 					}
 				} else {
-					System.out.println("Row with id" + itemnum + " does not exist or could not be updated.");
+					System.out.println("Error: Row with id " + itemnum + " does not exist, could not be updated or there are no current bids on the item.");
 				}
 				
 			} catch (Exception e) {
+				System.out.println("A SQL error occured.");
 				System.out.print(e);
 			}
 		}
 		
 		// This will run the EndAuction method
+		@Override 
 		public void run ( ) {
 			// Put logs here?
+			System.out.println("Ending Auction...");
 		}
 }

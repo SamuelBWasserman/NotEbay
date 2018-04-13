@@ -31,8 +31,9 @@
 				String strDate = sdfDate.format(now);
 				String query = "INSERT INTO Item (dateadded, itemType, minsell, initprice, currentPrice, bidincrement, seller, description, length, name) VALUES(\"" +strDate + "\",\"" + category + "\",\"" + minSell + "\",\"" + initPrice + "\",\"" + initPrice + "\",\"" + bidIncr + "\",\"" +  session.getAttribute("username") + "\",\"" + description + "\",\"" + length + "\",\"" + itemName + "\")";
 				//Run the query against the database
-				int rowsUpdated = stmt.executeUpdate(query);
-				ResultSet r = stmt.getGeneratedKeys();
+				PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+				int rowsUpdated = ps.executeUpdate();
+				ResultSet r = ps.getGeneratedKeys();
 				if(rowsUpdated == 1 && r.next()){
 					// Get the itemnum and add it to the schedule
 					String id = r.getString(1);
@@ -42,7 +43,7 @@
 					c.add(Calendar.DATE, Integer.parseInt(length));
 					endDate = c.getTime();
 					Timer timer = new Timer();
-					timer.schedule(new EndAuction(id), 0, endDate);
+					timer.schedule(new AuctionHandler(id), endDate);
 					out.print("You have added and item.");
 				} else{
 					out.print("Please Enter All Fields");
