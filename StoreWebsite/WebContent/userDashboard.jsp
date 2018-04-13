@@ -26,5 +26,25 @@
 		<form action = "helpPage.jsp">
 			<button type="submit" name="help" value="Help">Help</button>		
 		</form>
+		<%
+		String role = (String)session.getAttribute("role");
+		String enabled;
+		if(role.equals("Customer Rep")){
+			enabled = "enabled";
+		} else {
+			enabled = "disabled";
+		}
+		%>
+		<br>
+		<form action = "editUserCredentials.jsp">
+			Change the credentials of any user here (Customer Representatives Only): <br>
+			Old Username: <input type="text" name="oldUsername">
+  			New Username: <input type="text" name="newUsername"><br>
+  			Old Password: <input type="text" name="oldPassword">
+  			New Password: <input type="text" name="newPassword"><br>
+		<br>
+  			<button type="submit" name="command" value="Submit" <%= enabled %>>Change User Info</button>
+  		<br>
+		</form>
 	</body>
 </html>
