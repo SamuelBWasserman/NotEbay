@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Login Page</title>
+<title>List an Item</title>
 </head>
 <body>
 	<form action = "processListItem.jsp">
@@ -18,10 +18,10 @@
   		<input type="radio" name="gender" value="Computer Components">Computer Components
   		<input type="radio" name="gender" value="Peripherals"> Peripherals
   		<input type="radio" name="gender" value="Software"> Software<br>
-  		Initial Price: <input type="text" name="initprice"><br>
-  		Min Sell Price: <input type="text" name="minsell"><br>
-  		Bid Increment: <input type="text" name="bidincr"><br>
-  		Length(Hours): <input type="text" name="length"><br>
+  		Initial Price(Integer): <input type="text" name="initprice"><br>
+  		Min Sell Price(Integer): <input type="text" name="minsell"><br>
+  		Bid Increment(Integer): <input type="text" name="bidincr"><br>
+  		Length(Days): <input type="text" name="length"><br>
 		<br>
   		<button type="submit" name="command" value="List Item">List Item</button>
   		<br>
